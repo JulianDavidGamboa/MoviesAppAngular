@@ -1,0 +1,53 @@
+<div class="jumbotron bg-transparent">
+    <h1 class="display-3 text-white font-weight-bold animated bounceInDown">Movies<span
+            class="text-dark animated bounceInDown">App</span></h1>
+    <p class="lead text-white font-weight-bold animated bounceInUp">Aplicación de peliculas.</p>
+</div>
+<div class="container">
+    <h1 class="text-white">
+        Cartelera
+    </h1>
+    <div class="row" *ngIf="peliculas">
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col-md-12 div-pic-1 animated fadeIn"
+                    [ngStyle]="{'background-image': 'url( Search[0].Poster )'}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 div-pic-2 animated fadeIn"
+                    [ngStyle]="{'background-image': 'url( https://m.media-amazon.com/images/M/MV5BNDYxNjQyMjAtNTdiOS00NGYwLWFmNTAtNThmYjU5ZGI2YTI1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg )'}">
+                    >
+
+                </div>
+                <div class="col-sm-6 div-pic-2 animated fadeIn"
+                    [ngStyle]="{'background-image': 'url( https://m.media-amazon.com/images/M/MV5BNDYxNjQyMjAtNTdiOS00NGYwLWFmNTAtNThmYjU5ZGI2YTI1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg )'}">
+                    >
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col-sm-6 div-pic-2 animated fadeIn"
+                    [ngStyle]="{'background-image': 'url( https://m.media-amazon.com/images/M/MV5BNDYxNjQyMjAtNTdiOS00NGYwLWFmNTAtNThmYjU5ZGI2YTI1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg )'}">
+                    >
+
+                </div>
+                <div class="col-sm-6 div-pic-2 animated fadeIn"
+                    [ngStyle]="{'background-image': 'url( https://m.media-amazon.com/images/M/MV5BNDYxNjQyMjAtNTdiOS00NGYwLWFmNTAtNThmYjU5ZGI2YTI1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg )'}">
+                    >
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 div-pic-1 animated fadeIn"
+                    [ngStyle]="{'background-image': 'url( https://m.media-amazon.com/images/M/MV5BNDYxNjQyMjAtNTdiOS00NGYwLWFmNTAtNThmYjU5ZGI2YTI1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg )'}">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

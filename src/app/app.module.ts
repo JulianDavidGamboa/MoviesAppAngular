@@ -2,17 +2,36 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
+
+import { PeliculasService } from './services/peliculas.service';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { HomeComponent } from './components/home/home.component';
+import { PeliculaComponent } from './components/pelicula/pelicula.component';
+import { BuscarComponent } from './components/buscar/buscar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PeliculaImagenPipe } from './pipes/pelicula-imagen.pipe';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent,
+    HomeComponent,
+    PeliculaComponent,
+    BuscarComponent,
+    PeliculaImagenPipe
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    HttpClientJsonpModule,
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [PeliculasService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
