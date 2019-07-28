@@ -8,16 +8,27 @@ import { PeliculasService } from 'src/app/services/peliculas.service';
 })
 export class HomeComponent implements OnInit {
 
-  public peliculas: any[] = [];
+  cartelera: any;
+  populares: any;
+  popularsChilds: any;
 
   constructor( private peliculasService: PeliculasService ) { }
 
   ngOnInit() {
 
+    this.peliculasService.getCartelera()
+        .subscribe((res: any) => {
+          this.cartelera = res.results;
+    });
+
     this.peliculasService.getPopulars()
         .subscribe((res: any) => {
-          console.log(res.Search[0].Poster);
-          this.peliculas = res;
+          this.populares = res.results;
+    });
+
+    this.peliculasService.getPopularsChilds()
+        .subscribe((res: any) => {
+          this.popularsChilds = res.results;
     });
 
   }

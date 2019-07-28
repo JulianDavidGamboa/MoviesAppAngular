@@ -2,40 +2,48 @@ import { Injectable } from '@angular/core';
 
 import { JsonpClientBackend, JsonpInterceptor, HttpClientJsonpModule, HttpClient } from '@angular/common/http';
 import 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PeliculasService {
 
-  /*
-  Api key: 3516004e40e7344294998216120887a1
-  API Read Access Token:
-  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNTE2MDA0ZTQwZTczNDQyO
-  TQ5OTgyMTYxMjA4ODdhMSIsInN1YiI6IjVkM2E2MGE4ZTU0ZDVkMjUzM2RkOTQ3YiIsInNj
-  b3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.cvReNshc666Lm09q3o_y3EYRlOh1Mw
-  FWcvLgS53GUzg
-
-  key themoviedb: 3516004e40e7344294998216120887a1
-  url: https://api.themoviedb.org/3
-
-  key OMDb: 27c32221
-  url: http://www.omdbapi.com/?apikey=
-  
-  */
-
   private apikey: string = '3516004e40e7344294998216120887a1';
   private urlMoviedb: string = 'https://api.themoviedb.org/3';
 
-  private dateDay = new Date().getFullYear();
+  peliculas: any[] = [];
 
   constructor( private jsonp: HttpClientJsonpModule, private http: HttpClient ) { }
+
+  getCartelera() {
+
+    let desde = new Date();
+    let hasta = new Date();
+    hasta.setDate( hasta.getDate() + 7 );
+
+    let desdeStr = `${ desde.getFullYear() }-${ desde.getMonth()+1 }-${ desde.getDate() }`;
+    let hastaStr = `${ hasta.getFullYear() }-${ hasta.getMonth()+1 }-${ hasta.getDate() }`;
+
+    let url = `${ this.urlMoviedb }/discover/movie?primary_release_date.gte=${ desdeStr }&primary_release_date.lte=${ hastaStr }&api_key=${ this.apikey }&language=es`;
+
+    return this.http.jsonp(url, 'callback');
+
+  }
 
   getPopulars( ) {
 
     let url = `${ this.urlMoviedb }/discover/movie?sort_by=popularity.desc&api_key=${ this.apikey }&language=es`;
 
-    return this.http.jsonp(`http://www.omdbapi.com/?apikey=27c32221&s=${ this.dateDay }`, 'callback');
+    return this.http.jsonp(url, 'callback');
+
+  }
+
+  getPopularsChilds( ) {
+
+    let url = `${ this.urlMoviedb }/discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc&api_key=${ this.apikey }&language=es`;
+
+    return this.http.jsonp(url, 'callback');
 
   }
 
@@ -43,8 +51,23 @@ export class PeliculasService {
 
     let url = `${ this.urlMoviedb }/search/movie?query=${ texto }&sort_by=popularity.desc&api_key=${ this.apikey }&language=es`;
 
+    return this.http.get(url).pipe(
+      map( res => {
+        this.peliculas = res['results'];
+        console.log(this.peliculas);
+        return res['results'];
+      }));
+
+  }
+
+  getPelicula( id: string ) {
+
+    let url = `${ this.urlMoviedb }/movie/${ id }?api_key=${ this.apikey }&language=es`;
+
     return this.http.jsonp(url, 'callback');
 
   }
+
+
 
 }

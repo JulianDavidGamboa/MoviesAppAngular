@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
@@ -13,6 +14,7 @@ import { PeliculaComponent } from './components/pelicula/pelicula.component';
 import { BuscarComponent } from './components/buscar/buscar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PeliculaImagenPipe } from './pipes/pelicula-imagen.pipe';
+import { GaleriaComponent } from './components/home/galeria.component';
 
 
 @NgModule({
@@ -22,10 +24,12 @@ import { PeliculaImagenPipe } from './pipes/pelicula-imagen.pipe';
     HomeComponent,
     PeliculaComponent,
     BuscarComponent,
-    PeliculaImagenPipe
+    PeliculaImagenPipe,
+    GaleriaComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     HttpClientJsonpModule,
     AppRoutingModule,
